@@ -1,4 +1,4 @@
-import time, os
+import json, os, time
 
     # print(" ____________________________________________________________________________________________________")
     # print("|                                                                                                    |")
@@ -17,11 +17,15 @@ import time, os
 
 def windResize():
     os.system('cls' if os.name == 'nt' else 'clear')
+    print("Please resize your window to fit the following box.")
+    print("Press return when you are finished.")
+    time.sleep(10)
     print(" R̲e̲s̲i̲z̲e̲________________________________________________________________________________________________")
-    print("|                                                                                                      |")
-    print("|                               Please resize your window to fit this box                              |")
-    print("|                                        Press Return to Continue                                      |")
-    print("|                                                                                                      |")
+    print("|  ,      \"                 .                             .                        .                   |")
+    print("|      .          `                  @               `                `                      \"         |")
+    print("|  ,          ~        *       ,          Created by Ben Yeffet   ,           *          `          @  |")
+    print("|        @                            .       '            `                                           |")
+    print("|  '              `                Inspired by towel.blinkenlights.nl                                  |")
     print("|                                                                                                      |")
     print("|                                                                                                      |")
     print("|                                                                                                      |")
@@ -35,6 +39,7 @@ def windResize():
     return
 
 def mainScreen():
+    os.system('cls' if os.name == 'nt' else 'clear')
     print(" M̲a̲i̲n̲_P̲a̲ge̲___________________________________________________________________________________________")
     print("|   `       .         ,       *         '   .          `         `       .      `      '         ,   |")
     print("|     @         `         ,       -Star Wars Informational Navigator-      .        `             .  |")
@@ -48,21 +53,24 @@ def mainScreen():
     print("|   `    ,                               '                                                |_/‾‾\_|   |")
     print("|                       @          `         'q' for quit          \"       `     '        |‾\__/‾|   |")
     print("|    `         *               ,      '           ,             `       ,                            |")
+    print("|       .               '             \"                  *                       `         ,         |")
     print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
     return
 
-def charScreen():
-    print(" ____________________________________________________________________________________________________")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print("|                                                                                                    |")
-    print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
+def charScreen(cURL, number): # DO NOT FORGET TO FILL THIS IN
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" C̲h̲a̲r̲a̲c̲t̲e̲r̲_V̲i̲e̲w̲e̲r̲__________________________________________________________________________________")
+    print("| Number: " + str(number))
+    print("| Name: " + json.loads(cURL.text)['name'])
+    print("| Hight: " + json.loads(cURL.text)['height'])
+    print("| Mass: " + json.loads(cURL.text)['mass'])
+    print("| Hair Color: " + json.loads(cURL.text)['hair_color'])
+    print("| Skin Color: " + json.loads(cURL.text)['skin_color'])
+    print("| Eye Color: " + json.loads(cURL.text)['eye_color'])
+    print("| Birth Year: " + json.loads(cURL.text)['birth_year'])
+    print("| Gender: " + json.loads(cURL.text)['gender'])
+    print("| Homeworld: " + json.loads(cURL.text)['homeworld'])
+    print("| ")
+    print("| 'q' for back")
+    print("| 'h' for previous character, 'l' for next")
+    print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
