@@ -19,7 +19,7 @@ def windResize():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("Please resize your window to fit the following box.")
     print("Press return when you are finished.")
-    time.sleep(10)
+    input()
     print(" R̲e̲s̲i̲z̲e̲________________________________________________________________________________________________")
     print("|  ,      \"                 .                             .                        .                   |")
     print("|      .          `                  @               `                `                      \"         |")
@@ -57,6 +57,11 @@ def mainScreen():
     print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
     return
 
+def tryFailed():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("Webpage timed out. Press 'q' to return.")
+    return
+
 def charScreen(cURL, number): # DO NOT FORGET TO FILL THIS IN
     os.system('cls' if os.name == 'nt' else 'clear')
     print(" C̲h̲a̲r̲a̲c̲t̲e̲r̲_V̲i̲e̲w̲e̲r̲__________________________________________________________________________________")
@@ -74,3 +79,21 @@ def charScreen(cURL, number): # DO NOT FORGET TO FILL THIS IN
     print("| 'q' for back")
     print("| 'h' for previous character, 'l' for next")
     print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
+
+def planetScreen(cURL, number):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(" ____________________________________________________________________________________________________")
+    print("| Number: " + str(number))
+    print("| Name: " + json.loads(cURL.text)['name'])
+    print("| Rotational Period: " + json.loads(cURL.text)['rotation_period'])
+    print("| Orbital Period: " + json.loads(cURL.text)['orbital_period'])
+    print("| Diameter: " + json.loads(cURL.text)['diameter'])
+    print("| Climate: " + json.loads(cURL.text)['climate'])
+    print("| Gravity: " + json.loads(cURL.text)['gravity'])
+    print("| Terrain: " + json.loads(cURL.text)['terrain'])
+    print("| Surface Water: " + json.loads(cURL.text)['surface_water'])
+    print("| Population: " + json.loads(cURL.text)['population'])
+    print("|")
+    print("| 'q' for back")
+    print("| 'h' for previous planet, 'l' for next")
+    print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
