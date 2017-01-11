@@ -11,4 +11,4 @@
 - [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to view characters in the films
 - [ ] Create Vehicle Viewer
 - [ ] Create Starship Viewer
-<p><b> Will add more to Vehicle and Starship once I finish the main viewer </b></p>
+<p><b> Will add more to Vehicle and Starship once I finish the main viewers for each </b></p>
