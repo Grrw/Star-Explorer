@@ -12,3 +12,4 @@ pyvenv.cfg
 pip-selfcheck.json
 settings.json
 __pycache__
+deleteme.py
