@@ -15,13 +15,16 @@ import json, os, time, requests, getch
     # print("|                                                                                                    |")
     # print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
 
+def clearS():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def windResize():
     """
     Used for resizing the window
     Has issues when resizing on Windows CMD
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("Please resize your window to fit the following box.")
+    clearS()
+    print("Please resize your window to fit the followin box.")
     print("Press return when you are finished.")
     input()
     print(" R̲e̲s̲i̲z̲e̲________________________________________________________________________________________________")
@@ -47,7 +50,7 @@ def mainScreen():
     Main Menu Screen, returned to as a side-effect of switching from one to another
     Hard-coded and needs no web access
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    clearS()
     print(" M̲a̲i̲n̲_P̲a̲ge̲___________________________________________________________________________________________")
     print("|   `       .         ,       *         '   .          `         `       .      `      '         ,   |")
     print("|     @         `         ,        Star Wars Informational Navigator       .        `             .  |")
@@ -69,7 +72,7 @@ def tryFailed():
     """
     Call when a try/except is used to prevent app from crashing
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    clearS()
     print("Webpage timed out. Press 'q' to go back, 'j' to try again.")
     return
 
@@ -78,7 +81,7 @@ def charScreen(cURL, number):
     Pass a URL and get info from each character and their homeworld
     Bring up tryFailed if server does not respond to either request
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    clearS()
     homeWorld = str(json.loads(cURL.text)['homeworld']) # make 'homeworld' into a string
     homeWorld = homeWorld.split("/")
     try:
@@ -104,7 +107,7 @@ def charScreen(cURL, number):
 
 
 def planetScreen(cURL, number):
-    os.system('cls' if os.name == 'nt' else 'clear')
+    clearS()
     print(" _P̲l̲a̲n̲e̲t̲_V̲i̲e̲w̲e̲r̲______________________________________________________________________________________")
     print("| Number: " + str(number))
     print("| Name: " + json.loads(cURL.text)['name'])
@@ -128,7 +131,7 @@ def filmScreen(cURL, number):
     """
     filmScreenLoop = False # while loop for main filmScreen page
     while not filmScreenLoop:
-        os.system('cls' if os.name == 'nt' else 'clear')
+        clearS()
         print(" _F̲i̲l̲m̲_V̲i̲e̲w̲e̲r̲________________________________________________________________________________________")
         print("| Title: ")
         print("| Director: " + json.loads(cURL.text)['director'])
@@ -151,7 +154,7 @@ def filmScreen(cURL, number):
             linePrint = 0 # starts on crawlString[0]
 
             while not crawlStringLoop:
-                os.system('cls' if os.name == 'nt' else 'clear')
+                clearS()
                 print(" _F̲i̲l̲m̲_V̲i̲e̲w̲e̲r̲_C̲r̲a̲w̲l̲__________________________________________________________________________________")
                 print("| 'q' to quit")
                 print("| 'h' to return to begnning, 'l' for next 5 lines")

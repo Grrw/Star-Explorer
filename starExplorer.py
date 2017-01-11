@@ -6,20 +6,21 @@ input()
 reloadFilms = False # used when user chose invalid film
 tryWorld = False # used when user goes from Character to Planets
 mExit = False
+
 while not mExit:
     func.mainScreen()
     if tryWorld == True: # if user pressed 'k' on charScreen, autoselect 'p' on mainScreen
         mSelect = 'p'
-        os.system('cls' if os.name == 'nt' else 'clear')
+        func.clearS()
     else:
         mSelect = getch.getch()
 
-    # QUIT MAIN LOOP
+# QUIT MAIN LOOP
     if mSelect == 'q':
         mExit = True
-        os.system('cls' if os.name == 'nt' else 'clear')
+        func.clearS()
 
-    # CHARACTER SELECT
+# CHARACTER SELECT
     elif mSelect == 'c':
         cExit = False
         cAcc = 1
@@ -55,7 +56,7 @@ while not mExit:
                 else:
                     cAcc = charJump
 
-    # PLANET SELECT
+# PLANET SELECT
     elif mSelect == 'p':
         pExit = False
         pAcc = 1
@@ -85,7 +86,7 @@ while not mExit:
                 print('Reloading')
                 # keep pAcc the same
 
-    # FILM SELECT
+# FILM SELECT
     elif mSelect == 'f':
         fExit = False
         fAcc = 1
@@ -93,7 +94,7 @@ while not mExit:
         filmTimeout = False
         while not fExit:
             print("Loading...")
-            os.system('cls' if os.name == 'nt' else 'clear')
+            func.clearS()
             print(" _P̲l̲a̲n̲e̲t̲_V̲i̲e̲w̲e̲r̲______________________________________________________________________________________")
             print("| Select a film (1-7) or press 'q' to quit: \n|")
             print("| 1: The Phantom Menace\n| 2: Attack of The Clones\n| 3: Revenge of the Sith")
@@ -126,29 +127,25 @@ while not mExit:
                 movieChoice = '7'
             else:
                 movieChoice = '0'
-            if fExit == True:
-                print("")
-            elif int(movieChoice) == 0:
-                invalid_message = True
-            else:
-                print("Loading...")
-                try:
-                    fResponse = requests.get('http://swapi.co/api/films/' + str(movieChoice), timeout = 9)
-                    func.filmScreen(fResponse, int(movieChoice))
-                except ConnectionError:
-                    filmTimeout = True
+            if fExit != True:
+                if int(movieChoice) == 0:
+                    invalid_message = True
+                else:
+                    print("Loading...")
+                    try:
+                        fResponse = requests.get('http://swapi.co/api/films/' + str(movieChoice), timeout = 9)
+                        func.filmScreen(fResponse, int(movieChoice))
+                    except ConnectionError:
+                        filmTimeout = True
 
 
 
 
 
-    # VEHICLE SELECT
+# VEHICLE SELECT
     elif mSelect == 'v':
         pass
 
-    # STARSHIP SELECT
+# STARSHIP SELECT
     elif mSelect == 's':
         pass
-
-
-
