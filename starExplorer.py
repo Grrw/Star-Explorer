@@ -24,6 +24,7 @@ while not mExit:
     elif mSelect == 'c':
         cExit = False
         cAcc = 1
+        wrongCharNum = False
         while not cExit:
             print("Loading...")
             # try/except tries to get the date from swapi
@@ -32,6 +33,12 @@ while not mExit:
                 homeChoice = func.charScreen(cResponse, cAcc) # store what the function returns
             except:
                 func.tryFailed()
+
+            # if user previously selected an invalid number
+            if wrongCharNum == True:
+                print("Invalid number. Please try 1-88")
+                wrongCharNum = False
+
             cSelect = getch.getch()
             if cSelect == 'q': # quit
                 cExit = True
@@ -51,7 +58,7 @@ while not mExit:
             elif cSelect == 'i':
                 charJump = input("Type a number from 1-88: ") # jump to character
                 if int(charJump) <= 0 or int(charJump) >= 89:
-                    print("Invalid number. Please ")
+                    wrongCharNum = True
                     cAcc = cAcc
                 else:
                     cAcc = charJump
@@ -60,6 +67,7 @@ while not mExit:
     elif mSelect == 'p':
         pExit = False
         pAcc = 1
+        wrongPlanetNumber = False
         while not pExit:
             if tryWorld == True: # if user pressed 'k' on charScreen, take them to the planet
                 pAcc = homeChoice
@@ -71,6 +79,12 @@ while not mExit:
                 func.planetScreen(pResponse, pAcc)
             except:
                 func.tryFailed()
+
+            # if user previously selected an invalid number
+            if wrongPlanetNumber == True:
+                print("Invalid number. Please try 1-61")
+                wrongPlanetNumber = False
+
             pSelect = getch.getch()
             if pSelect == 'q': # quit 
                 pExit = True
@@ -84,6 +98,13 @@ while not mExit:
                     pAcc = 1
             elif pSelect == 'j':
                 print('Reloading')
+            elif pSelect == 'i':
+                planetJump = input("Type a number from 1-88: ") # jump to character
+                if int(planetJump) <= 0 or int(planetJump) >= 62:
+                    wrongPlanetNumber = True
+                    pAcc = pAcc
+                else:
+                    pAcc = planetJump
                 # keep pAcc the same
 
 # FILM SELECT
@@ -135,7 +156,7 @@ while not mExit:
                     try:
                         fResponse = requests.get('http://swapi.co/api/films/' + str(movieChoice), timeout = 9)
                         func.filmScreen(fResponse, int(movieChoice))
-                    except ConnectionError:
+                    except:
                         filmTimeout = True
 
 
@@ -148,4 +169,50 @@ while not mExit:
 
 # STARSHIP SELECT
     elif mSelect == 's':
-        pass
+        sExit = False
+        shipPage = 1
+        shipIndex = 1
+        while not sExit:
+            func.clearS()
+            try:
+                sResponse = requests.get('http://swapi.co/api/starships/?page=' + str(shipPage))
+                shipData = func.shipScreen(sResponse, shipIndex)
+            except:
+                func.tryFailed()
+            
+            print('shipPage = ' + str(shipPage))
+            print('shipIndex = ' + str(shipIndex))
+
+            sSelect = getch.getch()
+            if sSelect == 'q':
+                sExit = True
+
+            # the following loops pages and indexes
+            elif sSelect == 'l':
+                if shipPage == 4 and shipIndex == 7:
+                    shipPage = 1 
+                    shipIndex = 0
+                    print('loop to shipPage 1 and shipIndex 0')
+                shipIndex = shipIndex + 1
+                print('added 1 to shipIndex')
+                if shipIndex > 10:
+                    shipPage = shipPage + 1 # ships are on pages, referenced by indexes of 'results'
+                    print('added 1 to shipPage')
+                    shipIndex = 1
+                    print('reset shipIndex')
+            elif sSelect == 'h':
+                shipIndex = shipIndex - 1
+                print('remove 1 from shipIndex')
+                if shipIndex < 1:
+                    shipPage = shipPage - 1
+                    print('remove 1 from shipPage')
+                    if shipPage < 1:
+                        shipPage = 4
+                        print('backwards reset of shipPage')
+                    shipIndex = 10
+                    print('reset of shipIndex (p1-3)')
+                    if shipPage == 4:
+                        shipIndex = 7
+                        print('backwards reset (p4) of shipIndex')
+            input()
+            
