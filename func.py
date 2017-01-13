@@ -42,6 +42,7 @@ def windResize():
     print("|                                                                                                      |")
     print("|                                                                                                      |")
     print("|                                                                                                      |")
+    print("|                                                                                                      |")
     print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
     return
 
@@ -89,16 +90,17 @@ def charScreen(cURL, number):
     except:
         tryFailed()
         return
+    personData = json.loads(cURL.text)
     print(" C̲h̲a̲r̲a̲c̲t̲e̲r̲_V̲i̲e̲w̲e̲r̲__________________________________________________________________________________")
     print("| Number: " + str(number))
-    print("| Name: " + json.loads(cURL.text)['name'])
-    print("| Hight: " + json.loads(cURL.text)['height'])
-    print("| Mass: " + json.loads(cURL.text)['mass'])
-    print("| Hair Color: " + json.loads(cURL.text)['hair_color'])
-    print("| Skin Color: " + json.loads(cURL.text)['skin_color'])
-    print("| Eye Color: " + json.loads(cURL.text)['eye_color'])
-    print("| Birth Year: " + json.loads(cURL.text)['birth_year'])
-    print("| Gender: " + json.loads(cURL.text)['gender'])
+    print("| Name: " + personData['name'])
+    print("| Hight: " + personData['height'])
+    print("| Mass: " + personData['mass'])
+    print("| Hair Color: " + personData['hair_color'])
+    print("| Skin Color: " + personData['skin_color'])
+    print("| Eye Color: " + personData['eye_color'])
+    print("| Birth Year: " + personData['birth_year'])
+    print("| Gender: " + personData['gender'])
     print("| Homeworld: " + json.loads(charWorld.text)['name'] + '\n|\n| \'q\' to return')
     print("| 'k' to go to homeworld / 'i' to insert character number if you know it")
     print("| 'h' for previous character / 'l' for next / 'j' to reload page")
@@ -108,18 +110,19 @@ def charScreen(cURL, number):
 
 def planetScreen(cURL, number):
     clearS()
+    planetData = json.loads(cURL.text)
     print(" _P̲l̲a̲n̲e̲t̲_V̲i̲e̲w̲e̲r̲______________________________________________________________________________________")
     print("| Number: " + str(number))
-    print("| Name: " + json.loads(cURL.text)['name'])
-    print("| Rotational Period: " + json.loads(cURL.text)['rotation_period'])
-    print("| Orbital Period: " + json.loads(cURL.text)['orbital_period'])
-    print("| Diameter: " + json.loads(cURL.text)['diameter'])
-    print("| Climate: " + json.loads(cURL.text)['climate'])
-    print("| Gravity: " + json.loads(cURL.text)['gravity'])
-    print("| Terrain: " + json.loads(cURL.text)['terrain'])
-    print("| Surface Water: " + json.loads(cURL.text)['surface_water'])
-    print("| Population: " + json.loads(cURL.text)['population'] + '\n|')
-    print("| 'q' to return")
+    print("| Name: " + planetData['name'])
+    print("| Rotational Period: " + planetData['rotation_period'])
+    print("| Orbital Period: " + planetData['orbital_period'])
+    print("| Diameter: " + planetData['diameter'])
+    print("| Climate: " + planetData['climate'])
+    print("| Gravity: " + planetData['gravity'])
+    print("| Terrain: " + planetData['terrain'])
+    print("| Surface Water: " + planetData['surface_water'])
+    print("| Population: " + planetData['population'] + '\n|\n| \'q\' to return')
+    print("| 'i' to insert planet number if you know it")
     print("| 'h' for previous planet, 'l' for next, 'j' to reload page")
     print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
 
@@ -130,13 +133,14 @@ def filmScreen(cURL, number):
 
     """
     filmScreenLoop = False # while loop for main filmScreen page
+    filmData = json.loads(cURL.text)
     while not filmScreenLoop:
         clearS()
         print(" _F̲i̲l̲m̲_V̲i̲e̲w̲e̲r̲________________________________________________________________________________________")
-        print("| Title: ")
-        print("| Director: " + json.loads(cURL.text)['director'])
-        print("| Producer: " + json.loads(cURL.text)['producer'])
-        print("| Release Date: " + json.loads(cURL.text)['release_date'] + '\n|')
+        print("| Title: " + filmData['title'])
+        print("| Director: " + filmData['director'])
+        print("| Producer: " + filmData['producer'])
+        print("| Release Date: " + filmData['release_date'] + '\n|')
         print("| 'q' to return")
         print("| 'k' to view opening crawl")
         print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
@@ -158,12 +162,12 @@ def filmScreen(cURL, number):
                 print(" _F̲i̲l̲m̲_V̲i̲e̲w̲e̲r̲_C̲r̲a̲w̲l̲__________________________________________________________________________________")
                 print("| 'q' to quit")
                 print("| 'h' to return to begnning, 'l' for next 5 lines")
-                print("|----------------------------------------------------------------------------------------------------")
+                print("|----------------------------------------------------------------------------------------------------\n|")
                 print("| " + crawlString[linePrint])
                 print("| " + crawlString[linePrint + 1])
                 print("| " + crawlString[linePrint + 2])
                 print("| " + crawlString[linePrint + 3])
-                print("| " + crawlString[linePrint + 4])
+                print("| " + crawlString[linePrint + 4] + '\n|')
                 print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
 
                 crawlStringLen = len(crawlString)
@@ -173,7 +177,7 @@ def filmScreen(cURL, number):
 
                 elif crawlStringSelection == 'l':
                     crawlStringDecider = False # used for decding how many lines will be printed
-                    linePrint = linePrint + 5
+                    linePrint = linePrint + 1
                     while not crawlStringDecider:
                         # prevent linePrint from going over crawlStringLen
                         if linePrint + 5 >= crawlStringLen:
@@ -185,7 +189,7 @@ def filmScreen(cURL, number):
 
                 elif crawlStringSelection == 'h':
                     crawlStringDecider = False # used for decding how many lines will be printed
-                    linePrint = linePrint - 5
+                    linePrint = linePrint - 1
                     while not crawlStringDecider:
                         # prevent linePrint from going under 0
                         if linePrint - 5 <= crawlStringLen:
@@ -193,3 +197,9 @@ def filmScreen(cURL, number):
                             crawlStringDecider = True
                         else:
                             crawlStringDecider = True
+
+def shipScreen(cURL, index):
+    clearS()
+    shipData = json.loads(cURL.text)
+    print(" _S̲t̲a̲r̲s̲h̲i̲p̲_V̲i̲e̲w̲e̲r̲____________________________________________________________________________________")
+    return shipData
