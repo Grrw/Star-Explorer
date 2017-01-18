@@ -123,7 +123,7 @@ def planetScreen(cURL, number):
     print("| Surface Water: " + planetData['surface_water'])
     print("| Population: " + planetData['population'] + '\n|\n| \'q\' to return')
     print("| 'i' to insert planet number if you know it")
-    print("| 'h' for previous planet, 'l' for next, 'j' to reload page")
+    print("| 'h' for previous planet / 'l' for next")
     print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
 
 def filmScreen(cURL, number):
@@ -202,4 +202,17 @@ def shipScreen(cURL, index):
     clearS()
     shipData = json.loads(cURL.text)
     print(" _S̲t̲a̲r̲s̲h̲i̲p̲_V̲i̲e̲w̲e̲r̲____________________________________________________________________________________")
+    print("| Name: " + shipData['results'][index]['name'])
+    print("| Model: " + shipData['results'][index]['model'])
+    print("| Manufacturer: " + shipData['results'][index]['manufacturer'])
+    print("| Length: " + shipData['results'][index]['length'])
+    print("| Max Atmosphering Speed: " + shipData['results'][index]['max_atmosphering_speed'])
+    print("| Crew: " + shipData['results'][index]['crew'])
+    print("| Passengers: " + shipData['results'][index]['passengers'])
+    print("| Cargo Capacity: " + shipData['results'][index]['cargo_capacity'])
+    print("| Hyperdrive Rating: " + shipData['results'][index]['hyperdrive_rating'])
+    print("| MGLT: " + shipData['results'][index]['MGLT'])
+    print("| Starship Class: " + shipData['results'][index]['starship_class'])
+    print("| 'i' to insert ship identification numbers if you know them")
+    print("| 'k' to view films with this ship / 'h' for previous ship, 'l' for next")
     return shipData
