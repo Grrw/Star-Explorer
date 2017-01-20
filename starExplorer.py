@@ -171,17 +171,21 @@ while not mExit:
     elif mSelect == 's':
         sExit = False
         shipPage = 1
-        shipIndex = 1
+        shipIndex = 0
+        pageFour = False
         while not sExit:
+            wrongJump = False # used if 'i' is pressed
             func.clearS()
             try:
                 sResponse = requests.get('http://swapi.co/api/starships/?page=' + str(shipPage))
                 shipData = func.shipScreen(sResponse, shipIndex)
+                print("| Ship Identification (section / number) = ", str(shipPage), '/', str(shipIndex))
+                print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
+                if pageFour == True:
+                    print("Section 4 only goes up to 6.")
+                    
             except:
                 func.tryFailed()
-            
-            print('shipPage = ' + str(shipPage))
-            print('shipIndex = ' + str(shipIndex))
 
             sSelect = getch.getch()
             if sSelect == 'q':
@@ -189,30 +193,52 @@ while not mExit:
 
             # the following loops pages and indexes
             elif sSelect == 'l':
-                if shipPage == 4 and shipIndex == 7:
+                if shipPage == 4 and shipIndex == 6:
                     shipPage = 1 
-                    shipIndex = 0
+                    shipIndex = -1
                     print('loop to shipPage 1 and shipIndex 0')
                 shipIndex = shipIndex + 1
                 print('added 1 to shipIndex')
-                if shipIndex > 10:
+                if shipIndex > 9:
                     shipPage = shipPage + 1 # ships are on pages, referenced by indexes of 'results'
                     print('added 1 to shipPage')
-                    shipIndex = 1
+                    shipIndex = 0
                     print('reset shipIndex')
             elif sSelect == 'h':
                 shipIndex = shipIndex - 1
                 print('remove 1 from shipIndex')
-                if shipIndex < 1:
+                if shipIndex < 0:
                     shipPage = shipPage - 1
                     print('remove 1 from shipPage')
                     if shipPage < 1:
                         shipPage = 4
                         print('backwards reset of shipPage')
-                    shipIndex = 10
+                    shipIndex = 9
                     print('reset of shipIndex (p1-3)')
                     if shipPage == 4:
-                        shipIndex = 7
+                        shipIndex = 6
                         print('backwards reset (p4) of shipIndex')
-            input()
-            
+
+            elif sSelect == 'i':
+                jumpShip = input("Type the first ship identification number: ")
+                jumpShip = int(jumpShip) # make the user's input into int
+                if jumpShip > 4 or jumpShip < 1:
+                    print("Invalid number, press any key to continue. Try 1-4.")
+                    wrongJump = True
+                    getch.getch()
+                    # only if put in a proper first number:
+                else:
+                    jumpShip2 = input('Type the second ship identification number : ' + str(jumpShip) + ' / ')
+                    jumpShip2 = int(jumpShip2) # make the user's input into int
+                    if jumpShip == 4 and jumpShip2 > 6 and jumpShip2 <= 9:
+                        jumpShip2 = 6
+                        pageFour = True
+                    elif jumpShip2 > 9 or jumpShip2 < 0:
+                        print("Invalid number, press any key to continue. Try 0-9.")
+                        wrongJump = True
+
+                if wrongJump != True:
+                    jumpShip = str(jumpShip) + str(jumpShip2)
+                    jumpShip = list(jumpShip)
+                    shipPage = int(jumpShip[0])
+                    shipIndex = int(jumpShip[1])
