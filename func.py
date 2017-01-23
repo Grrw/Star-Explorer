@@ -161,7 +161,7 @@ def filmScreen(cURL, number):
                 clearS()
                 print(" _F̲i̲l̲m̲_V̲i̲e̲w̲e̲r̲_C̲r̲a̲w̲l̲__________________________________________________________________________________")
                 print("| 'q' to quit")
-                print("| 'h' to return to begnning, 'l' for next 5 lines")
+                print("| 'h' to return to begnning, 'l' to scroll down.")
                 print("|----------------------------------------------------------------------------------------------------\n|")
                 print("| " + crawlString[linePrint])
                 print("| " + crawlString[linePrint + 1])
