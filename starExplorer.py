@@ -57,11 +57,13 @@ while not mExit:
                 tryWorld = True
             elif cSelect == 'i':
                 charJump = input("Type a number from 1-88: ") # jump to character
-                if int(charJump) <= 0 or int(charJump) >= 89:
+                try:
+                    if int(charJump) <= 0 or int(charJump) >= 89:
+                        wrongCharNum = True
+                    else:
+                        cAcc = charJump
+                except:
                     wrongCharNum = True
-                    cAcc = cAcc
-                else:
-                    cAcc = charJump
 
 # PLANET SELECT
     elif mSelect == 'p':
@@ -99,12 +101,15 @@ while not mExit:
             elif pSelect == 'j':
                 print('Reloading')
             elif pSelect == 'i':
-                planetJump = input("Type a number from 1-88: ") # jump to character
-                if int(planetJump) <= 0 or int(planetJump) >= 62:
+                planetJump = input("Type a number from 1-61: ") # jump to character
+                try:
+                    if int(planetJump) <= 0 or int(planetJump) >= 62:
+                        wrongPlanetNumber = True
+                    else:
+                        pAcc = planetJump
+                except:
                     wrongPlanetNumber = True
-                    pAcc = pAcc
-                else:
-                    pAcc = planetJump
+
                 # keep pAcc the same
 
 # FILM SELECT
@@ -173,6 +178,8 @@ while not mExit:
         shipPage = 1
         shipIndex = 0
         pageFour = False
+        one_error = False
+        two_error = False
         while not sExit:
             wrongJump = False # used if 'i' is pressed
             func.clearS()
@@ -183,6 +190,13 @@ while not mExit:
                 print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
                 if pageFour == True:
                     print("Section 4 only goes up to 6.")
+                    pageFour = False
+                if one_error == True:
+                    print("Invalid number, try 1-4.")
+                    one_error = False
+                if two_error == True:
+                    print("Invalid number, try 0 - 9")
+                    two_error = False
                     
             except:
                 func.tryFailed()
@@ -221,21 +235,28 @@ while not mExit:
 
             elif sSelect == 'i':
                 jumpShip = input("Type the first ship identification number: ")
-                jumpShip = int(jumpShip) # make the user's input into int
-                if jumpShip > 4 or jumpShip < 1:
-                    print("Invalid number, press any key to continue. Try 1-4.")
+                try:
+                    jumpShip = int(jumpShip) # make the user's input into int
+                except:
                     wrongJump = True
-                    getch.getch()
-                    # only if put in a proper first number:
-                else:
-                    jumpShip2 = input('Type the second ship identification number : ' + str(jumpShip) + ' / ')
-                    jumpShip2 = int(jumpShip2) # make the user's input into int
-                    if jumpShip == 4 and jumpShip2 > 6 and jumpShip2 <= 9:
-                        jumpShip2 = 6
-                        pageFour = True
-                    elif jumpShip2 > 9 or jumpShip2 < 0:
-                        print("Invalid number, press any key to continue. Try 0-9.")
+                if wrongJump == False:
+                    if jumpShip > 4 or jumpShip < 1:
+                        one_error = True
                         wrongJump = True
+                        # only if put in a proper first number:
+                    else:
+                        jumpShip2 = input('Type the second ship identification number : ' + str(jumpShip) + ' / ')
+                        try:
+                            jumpShip2 = int(jumpShip2) # make the user's input into int
+                        except:
+                            wrongJump = True
+                        if wrongJump == False:
+                            if jumpShip == 4 and jumpShip2 > 6 and jumpShip2 <= 9:
+                                jumpShip2 = 6
+                                pageFour = True
+                            elif jumpShip2 > 9 or jumpShip2 < 0:
+                                two_error = True
+                                wrongJump = True
 
                 if wrongJump != True:
                     jumpShip = str(jumpShip) + str(jumpShip2)
