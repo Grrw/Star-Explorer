@@ -20,30 +20,18 @@ def clearS():
 
 def windResize():
     """
-    Used for resizing the window
-    Has issues when resizing on Windows CMD
+    Previously used for resizing the window, which is no longer necessary
+    Currently serves as a credits page
     """
     clearS()
-    print("Please resize your window to fit the followin box.")
-    print("Press return when you are finished.")
-    input()
-    print(" R̲e̲s̲i̲z̲e̲________________________________________________________________________________________________")
+    print(" ______________________________________________________________________________________________________")
     print("|  ,      \"                 .                             .                        .                   |")
-    print("|      .          `                  @               `                `                      \"         |")
     print("|  ,          ~        *       ,          Created by Ben Yeffet   ,           *          `          @  |")
-    print("|        @                            .       '            `                                           |")
-    print("|  '              `                Inspired by towel.blinkenlights.nl                                  |")
-    print("|                                                                                                      |")
-    print("|                                                                                                      |")
-    print("|                                                                                                      |")
-    print("|                                                                                                      |")
-    print("|                                                                                                      |")
-    print("|                                                                                                      |")
-    print("|                                                                                                      |")
-    print("|                                                                                                      |")
-    print("|                                                                                                      |")
-    print("|                                                                                                      |")
+    print("|        @                            .       '            `                             ,             |")
+    print("|  '              `                Inspired by towel.blinkenlights.nl       `                          |")
+    print("|          .               `             .                                         .                   |")
     print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
+    time.sleep(3)
     return
 
 def mainScreen():
@@ -94,7 +82,7 @@ def charScreen(cURL, number):
     print(" C̲h̲a̲r̲a̲c̲t̲e̲r̲_V̲i̲e̲w̲e̲r̲__________________________________________________________________________________")
     print("| Number: " + str(number))
     print("| Name: " + personData['name'])
-    print("| Hight: " + personData['height'])
+    print("| Height: " + personData['height'])
     print("| Mass: " + personData['mass'])
     print("| Hair Color: " + personData['hair_color'])
     print("| Skin Color: " + personData['skin_color'])
@@ -109,6 +97,10 @@ def charScreen(cURL, number):
 
 
 def planetScreen(cURL, number):
+    """
+    Pass a URL and get info from each planetScreen
+    tryFailed is brought up outside the function, this is used only to pring the information
+    """
     clearS()
     planetData = json.loads(cURL.text)
     print(" _P̲l̲a̲n̲e̲t̲_V̲i̲e̲w̲e̲r̲______________________________________________________________________________________")
@@ -130,7 +122,6 @@ def filmScreen(cURL, number):
     """
     Comparatively complicated because it functions as its own menu
     Pass a URL and the number of the movie to load information
-
     """
     filmScreenLoop = False # while loop for main filmScreen page
     filmData = json.loads(cURL.text)
@@ -198,21 +189,32 @@ def filmScreen(cURL, number):
                         else:
                             crawlStringDecider = True
 
-def shipScreen(cURL, index):
+def transportScreen(cURL, index, vehicle): # vehicle must be True or False
+    """
+    Because Vehicles and Starships are very similiar, takes either
+    Only attempts to print either Starship or Vehicle info
+
+    """
     clearS()
-    shipData = json.loads(cURL.text)
-    print(" _S̲t̲a̲r̲s̲h̲i̲p̲_V̲i̲e̲w̲e̲r̲____________________________________________________________________________________")
-    print("| Name: " + shipData['results'][index]['name'])
-    print("| Model: " + shipData['results'][index]['model'])
-    print("| Manufacturer: " + shipData['results'][index]['manufacturer'])
-    print("| Length: " + shipData['results'][index]['length'])
-    print("| Max Atmosphering Speed: " + shipData['results'][index]['max_atmosphering_speed'])
-    print("| Crew: " + shipData['results'][index]['crew'])
-    print("| Passengers: " + shipData['results'][index]['passengers'])
-    print("| Cargo Capacity: " + shipData['results'][index]['cargo_capacity'])
-    print("| Hyperdrive Rating: " + shipData['results'][index]['hyperdrive_rating'])
-    print("| MGLT: " + shipData['results'][index]['MGLT'])
-    print("| Starship Class: " + shipData['results'][index]['starship_class'])
+    transportData = json.loads(cURL.text)
+    if vehicle == False:
+        print(" _S̲t̲a̲r̲s̲h̲i̲p̲_V̲i̲e̲w̲e̲r̲____________________________________________________________________________________")
+    elif vehicle == True:
+        print(" _V̲e̲h̲i̲c̲l̲e̲_V̲i̲e̲w̲e̲r̲_____________________________________________________________________________________")
+    print("| Name: " + transportData['results'][index]['name'])
+    print("| Model: " + transportData['results'][index]['model'])
+    print("| Manufacturer: " + transportData['results'][index]['manufacturer'])
+    print("| Length: " + transportData['results'][index]['length'])
+    print("| Max Atmosphering Speed: " + transportData['results'][index]['max_atmosphering_speed'])
+    print("| Crew: " + transportData['results'][index]['crew'])
+    print("| Passengers: " + transportData['results'][index]['passengers'])
+    print("| Cargo Capacity: " + transportData['results'][index]['cargo_capacity'])
+    if vehicle == False:
+        print("| Hyperdrive Rating: " + transportData['results'][index]['hyperdrive_rating'])
+        print("| MGLT: " + transportData['results'][index]['MGLT'])
+        print("| Starship Class: " + transportData['results'][index]['starship_class'])
+    elif vehicle == True:
+        print("| Vehicle Class: " + transportData['results'][index]['vehicle_class'])
     print("| 'i' to insert ship identification numbers if you know them")
     print("| 'k' to view films with this ship / 'h' for previous ship, 'l' for next")
-    return shipData
+    return transportData
