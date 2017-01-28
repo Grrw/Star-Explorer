@@ -1,7 +1,7 @@
 import requests, os, json, time, getch, func
 
 func.windResize()
-input()
+
 
 reloadFilms = False # used when user chose invalid film
 tryWorld = False # used when user goes from Character to Planets
@@ -61,7 +61,7 @@ while not mExit:
                     if int(charJump) <= 0 or int(charJump) >= 89:
                         wrongCharNum = True
                     else:
-                        cAcc = charJump
+                        cAcc = int(charJump)
                 except:
                     wrongCharNum = True
 
@@ -72,7 +72,7 @@ while not mExit:
         wrongPlanetNumber = False
         while not pExit:
             if tryWorld == True: # if user pressed 'k' on charScreen, take them to the planet
-                pAcc = homeChoice
+                pAcc = int(homeChoice)
                 tryWorld = False
             print("Loading...")
             # try/except tries to get the date from swapi
@@ -106,7 +106,7 @@ while not mExit:
                     if int(planetJump) <= 0 or int(planetJump) >= 62:
                         wrongPlanetNumber = True
                     else:
-                        pAcc = planetJump
+                        pAcc = int(planetJump)
                 except:
                     wrongPlanetNumber = True
 
@@ -170,7 +170,86 @@ while not mExit:
 
 # VEHICLE SELECT
     elif mSelect == 'v':
-        pass
+        vExit = False
+        vehiclePage = 1
+        vehicleIndex = 0 # going to 8 on p4
+        pageFour = False
+        one_error = False
+        two_error = False
+        while not vExit:
+            wrongJump = False
+            func.clearS()
+            try:
+                vResponse = requests.get('http://swapi.co/api/vehicles/?page=' + str(vehiclePage))
+                vehicleData = func.transportScreen(vResponse, vehicleIndex, True)
+                print("| Vehicle Identification (section / number) = " + str(vehiclePage) + ' / ' + str(vehicleIndex))
+                print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
+                if pageFour == True:
+                    print("Section 4 only goes up to 8.")
+                    pageFour = False
+                if one_error == True:
+                    print("Invalid number, try 1-4.")
+                    one_error = False
+                if two_error == True:
+                    print("Invalid number, try 0 - 9")
+                    two_error = False
+            except:
+                func.tryFailed()
+
+            vSelect = getch.getch()
+            if vSelect == 'q':
+                vExit = True
+
+            # the following loops pages and indexes
+            elif vSelect == 'l':
+                if vehiclePage == 4 and vehicleIndex == 8:
+                    vehiclePage = 1
+                    vehicleIndex = -1
+                vehicleIndex = vehicleIndex + 1
+                if vehicleIndex > 9:
+                    vehiclePage = vehiclePage + 1
+                    vehicleIndex = 0
+            elif vSelect == 'h':
+                vehicleIndex = vehicleIndex - 1
+                if vehicleIndex < 0:
+                    vehiclePage = vehiclePage - 1
+                    if vehiclePage < 1:
+                        vehiclePage = 4
+                    vehicleIndex = 9
+                    if vehiclePage == 4:
+                        vehicleIndex = 8
+
+            elif vSelect == 'i':
+                jumpVehicle = input("Type the first vehicle identification number: ")
+                try:
+                    jumpVehicle = int(jumpVehicle) # make the user's input into int
+                except:
+                    wrongJump = True
+                if wrongJump == False:
+                    if jumpVehicle > 4 or jumpVehicle < 1:
+                        one_error = True
+                        wrongJump = True
+                        # only if put in a proper first number:
+                    else:
+                        jumpVehicle2 = input('Type the second ship identification number : ' + str(jumpVehicle) + ' / ')
+                        try:
+                            jumpVehicle2 = int(jumpVehicle2) # make the user's input into int
+                        except:
+                            wrongJump = True
+                        if wrongJump == False:
+                            if jumpVehicle2 == 4 and jumpVehicle2 > 8 and jumpVehicle2 <= 9:
+                                jumpVehicle2 = 8
+                                pageFour = True
+                            elif jumpVehicle2 > 8 or jumpVehicle2 < 0:
+                                two_error = True
+                                wrongJump = True
+
+                if wrongJump != True:
+                    jumpVehicle = str(jumpVehicle) + str(jumpVehicle2)
+                    jumpVehicle = list(jumpVehicle)
+                    vehiclePage = int(jumpVehicle[0])
+                    vehicleIndex = int(jumpVehicle[1])
+
 
 # STARSHIP SELECT
     elif mSelect == 's':
@@ -185,7 +264,7 @@ while not mExit:
             func.clearS()
             try:
                 sResponse = requests.get('http://swapi.co/api/starships/?page=' + str(shipPage))
-                shipData = func.shipScreen(sResponse, shipIndex)
+                shipData = func.transportScreen(sResponse, shipIndex, False)
                 print("| Ship Identification (section / number) = ", str(shipPage), '/', str(shipIndex))
                 print(" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾")
                 if pageFour == True:
