@@ -7,8 +7,9 @@
 - [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to jump to planet 
 - [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add jump to planet based on name (?)
 - [X] Create Film Viewer
-- [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to view planets in the films
-- [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to view characters in the films
-- [ ] Create Vehicle Viewer
-- [ ] Create Starship Viewer
-<p><b> Will add more to Vehicle and Starship once I finish the main viewers for each </b></p>
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to view planets in the films (?)
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to view characters in the films (?)
+- [X] Create Vehicle Viewer
+- [X] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to jump to vehicle
+- [X] Create Starship Viewer
+- [X] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to jump to ship
