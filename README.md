@@ -1,4 +1,6 @@
-# json-api-Grrw
+# Star Explorer
+I am finished working on this for now. It's fairly simple to use, but inconvenient to navigate.
+
 ## To-Do:
 - [X] Create Character Viewer
 - [X] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to jump to character
