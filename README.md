@@ -14,6 +14,8 @@ I am finished working on this for now. It's fairly simple to use, but inconvenie
 - [X] Create Vehicle Viewer
 - [X] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to jump to vehicle
 - [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add jump to vehicle based on name (?)
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add vehicle-based movie viewer (?)
 - [X] Create Starship Viewer
 - [X] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add the ability to jump to ship
 - [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add jump to ship based on name (?)
+- [ ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; > Add ship-based movie viewer (?)
