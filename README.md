@@ -1,4 +1,4 @@
-# Star Explorer
+# Star (Wars) Explorer
 I am finished working on this for now. It's fairly simple to use, but inconvenient to navigate.
 
 ## To-Do:
